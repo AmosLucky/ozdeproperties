@@ -36,6 +36,8 @@ class PropertyController extends Controller
     public function store(Request $request)
     {
         //
+        return response()->json(array('status'=> 500), 200);
+
     }
 
     /**
@@ -72,8 +74,8 @@ class PropertyController extends Controller
         //
     }
     public function uploadImage(Request $request){
-        $msg = "This is a simple message.";
-        $a =  array();
+        
+        $image_names =  array();
       try{
         $num_images  =  $request['num_images'];
         for($i = 0; $i < $num_images; $i++){
@@ -83,7 +85,7 @@ class PropertyController extends Controller
             
         
              $image_name = $request->$imageindex->getClientOriginalName();
-             array_push($a, $image_name);
+             array_push($image_names, $image_name);
              $request->$imageindex->storeAs('/public/images',$image_name);
            
 
@@ -92,9 +94,9 @@ class PropertyController extends Controller
 
        
 
-        return response()->json(array('msg'=> $a), 200);
+        return response()->json(array('status'=> 200,'image_names'=>$image_names), 200);
       }catch(Exception $e){
-        return response()->json(array('msg'=> $e), 200);
+        return response()->json(array('status'=> 500), 200);
 
       }
 

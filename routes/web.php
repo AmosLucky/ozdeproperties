@@ -44,11 +44,17 @@ Route::group( [ 'middleware' => 'auth' ], function(){
         return view('dashboard.index');});
         Route::get('/dashboard',  function(){
             return view('dashboard.index');});
-        Route::get('add_property',  function(){
-                return view('dashboard.add_property');}); 
+        // Route::get('add_property',  function(){
+            
+        //         return view('dashboard.add_property');}); 
+
+                Route::get('/add_property', [App\Http\Controllers\CompanyController::class, 'addProperty'])->name("addProperty");
+                Route::post('/store_property', [App\Http\Controllers\PropertyController::class, 'store'])->name("store_property");
+
+             
         // Route::get('add_property',  function(){
         //             return view('dashboard.add_property');}); 
-Route::post('/uploadimage', [App\Http\Controllers\PropertyController::class, 'uploadimage'])->name("uploadimage");
+            Route::post('/uploadimage', [App\Http\Controllers\PropertyController::class, 'uploadimage'])->name("uploadimage");
           
 
 });
