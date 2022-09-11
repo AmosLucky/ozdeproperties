@@ -24,6 +24,9 @@
 		
 		<!-- Custom Color Option -->
 		<link href="assets/css/colors.css" rel="stylesheet">
+		<script 
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+	</script>
 		<style>
 			.head_nav{
 				display: none;
@@ -39,7 +42,29 @@
 	display: none;
 
   }
-}
+} .image_container{
+        height: 120px;
+        width: 200px;
+        border-radius:20px;
+        overflow: hidden;
+        margin: 10px;
+      }
+      .image_container img{
+        height: 100%;
+        width: auto;
+        object-fit: cover;
+
+      }
+      .image_container span{
+        top: -8px;
+        right: 12px;
+        color: red;
+        font-size: 30px;
+        font-weight: normal;
+        cursor: pointer;
+      }
+
+
 
 		</style>
 		

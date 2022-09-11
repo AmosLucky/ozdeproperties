@@ -7,13 +7,18 @@
 		<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		
-        <title>Ozde properties</title>	
+        <title>Ozde properties</title>
+		<script 
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+	</script>
 		
         <!-- Custom CSS -->
         <link href="assets/css/styles.css" rel="stylesheet">
 		
 		<!-- Custom Color Option -->
 		<link href="assets/css/colors.css" rel="stylesheet">
+		
+
 		<style>
 			.d{}
 			@media only screen and (max-width: 1000px) {

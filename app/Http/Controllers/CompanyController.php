@@ -27,6 +27,10 @@ class CompanyController extends Controller
     {
         //
     }
+    public function getmsg(){
+        $msg = "This is a simple message.";
+        return response()->json(array('msg'=> $msg), 200);
+    }
 
     /**
      * Store a newly created resource in storage.

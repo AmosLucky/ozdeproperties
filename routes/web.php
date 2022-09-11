@@ -47,7 +47,9 @@ Route::group( [ 'middleware' => 'auth' ], function(){
         Route::get('add_property',  function(){
                 return view('dashboard.add_property');}); 
         // Route::get('add_property',  function(){
-        //             return view('dashboard.add_property');});        
+        //             return view('dashboard.add_property');}); 
+Route::post('/uploadimage', [App\Http\Controllers\PropertyController::class, 'uploadimage'])->name("uploadimage");
+          
 
 });
 

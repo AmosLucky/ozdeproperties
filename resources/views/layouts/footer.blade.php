@@ -316,6 +316,8 @@
 		 
 		<script src="https://themezhub.net/rikada-demo-05/rikada/assets/js/custom.js"></script>
 		<script src="https://themezhub.net/rikada-demo-05/rikada/assets/js/cl-switch.js"></script>
+
+		
 		<!-- ============================================================== -->
 		<!-- This page plugins -->
 		<!-- ============================================================== -->

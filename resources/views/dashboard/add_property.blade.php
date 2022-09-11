@@ -113,6 +113,29 @@
 								<!-- Gallery -->
 								<div class="form-submit">	
 									<h3>Gallery</h3>
+									<div class="container mt-3 w-100">
+
+										<div class="card shadow w-100">
+											<div class="card-header d-flex justify-content-between">
+												<h4>Image Upload</h4>
+												<form class="form"  method="post" id="form" >
+													<input  type="file" name="image" id="image" multiple="" onchange="selectImage()" style="width:110px;" >
+													<!-- <button class="btn btn-primary btn-sm" onclick="document.getElementById('image').click()">Choose Image</button> -->
+												</form>
+											</div>
+											<div class="card-body d-flex flex-wrap justify-content-start" id="container">
+									
+									
+												
+												
+											</div>
+											<form id="form2" class="d-non">
+												
+											</form>
+											  <button class="btn btn-primary" id="submit">SUMBIT</button>
+										</div>
+										
+									</div>
 									<div class="submit-section">
 										<div class="form-row">
 										
@@ -223,6 +246,124 @@
 				</div>
 						
 			</section>
+
+			
+<script type="text/javascript">
+
+    $("#submit").click(function(){
+//         var form = $('form2')[0]; 
+// var formData = new FormData(form);
+ 
+
+const form2 = document.getElementById("form2");
+        if (form2.hasChildNodes()) {
+            var fd = new FormData();
+        for(i = 0; i < form2.length; i++){
+            var files = form2.children[i].files[0];
+        fd.append('image'+i.toString(),files);
+        }
+		
+        fd.append("num_images",form2.length);
+		//_token: '{{csrf_token()}}'
+		fd.append("_token",'{{csrf_token()}}');
+  // form2.removeChild(form2.children[0]);
+   console.log(fd);
+    $.ajax({
+            url: '/uploadimage',
+            type: 'post',
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function(response){
+               $('#file').val("");
+               var counter = 0;
+
+                if(response != 0){
+                    alert(response.msg);
+                 //  $('.preview').prepend($('<img>',{id:response,src:"../images/"+response,width:"100",height:"100"}));
+                
+                 // images.push(response);
+                 
+
+
+                 // counter ++;
+                    //$("#img"+counter).attr("src",response); 
+                    //$(".preview img"+counter).show(); // Display image element
+                }else{
+                    alert('Image was not accepted');
+                }
+            },
+        });
+}
+
+
+        
+    });
+</script>
+
+
+			{{-- <script>
+				$(document).ready(function(){
+					$("#submit").click(function(){
+
+					})
+					$.ajax({
+               type:'POST',
+               url:'/uploadImage',
+               data:{_token: '{{csrf_token()}}'},
+               success:function(data) {
+                 alert(data.msg);
+               }
+            });
+				});
+			</script> --}}
 			<!-- ============================ Submit Property End ================================== -->
+			<script type="text/javascript">
+				var images = [];
+				function selectImage() {
+					var image = document.getElementById('image').files;
+					var file = document.getElementById('image').file;
+					for( i =0; i < image.length; i++){
+						images.push({
+							"name":image[i].name,
+							"url":URL.createObjectURL(image[i]),
+							file: image[i]
+			
+						});
+			
+					}
+					 var input = document.getElementById("image").cloneNode(true);
+					 input.id = "new_element";
+					 input.style.width = "100%";
+					 // input.type = "file";
+					 // input.value = image.value;
+					 document.getElementById("form2").appendChild(input);
+				   // console.log(images);
+					document.getElementById('form').reset();
+					document.getElementById('container').innerHTML= showImage();
+				   
+				}
+				 function showImage() {
+					// body...
+					var image = "";
+					images.forEach((i)=>{
+						image += '<div class="image_container d-flex justify-content-center position-relative" id="con"> <img src="'+i.url+'" alt="image"><span type="button" class="position-absolute" onclick="deleteImage('+images.indexOf(i)+')">&times;</span></div>';
+					});
+					return image;
+				}
+			
+				 function deleteImage(e) {
+					console.log(e);
+					images.splice(e,1);
+					document.getElementById('container').innerHTML= showImage();
+					const form2 = document.getElementById("form2");
+					if (form2.hasChildNodes()) {
+			  form2.removeChild(form2.children[e]);
+			   //console.log(form2.length);
+			}
+			
+				 }
+			</script>
+			
 			
 			@include('dashboard.components.footer')
